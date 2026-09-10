@@ -268,8 +268,12 @@ testsNist = withResource readPromptDocument'
 testsNistChainWebGroup:: TestTree
 testsNistChainWebGroup =  testGroup "SLH DSA Chainweb"
                             [ testCase "Good 128s signature with 256 bytes Hash" ( testChainWebSign True  SlhDsaSha128s key1 sig0 hash1)
+                            -- Padded signature must be refused
+                            , testCase "Good 128s signature with 256 bytes Hash with Padding" ( testChainWebSign False  SlhDsaSha128s key1 (sig0 <> "=") hash1)
                             , testCase "Good 192s signature with 256 bytes Hash" ( testChainWebSign True  SlhDsaSha192s key2 sig1 hash1)
                             , testCase "Good 256s signature with 256 bytes Hash" ( testChainWebSign True  SlhDsaSha256s key3 sig2 hash1)
+                            -- Padded signature must be refused
+                            , testCase "Good 256s signature with 256 bytes Hash  with Padding" ( testChainWebSign False  SlhDsaSha256s key3 (sig2 <> "=") hash1)
                             , testCase "Good 128s signature with 512 bytes Hash" ( testChainWebSign True  SlhDsaSha128s key1 sig3 hash2)
                             , testCase "Good 192s signature with 512 bytes Hash" ( testChainWebSign True  SlhDsaSha192s key2 sig4 hash2)
                             , testCase "Good 256s signature with 512 bytes Hash" ( testChainWebSign True  SlhDsaSha256s key3 sig5 hash2)
