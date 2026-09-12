@@ -189,6 +189,8 @@ data ExecutionFlag
   | FlagDisableReentrancyCheck
   -- | Flag to disable overflow check
   | FlagDisableSafeTime
+  -- | Flag to disable various Fixes for Pact 5.4
+  | FlagDisablePact54Fix
   deriving (Eq,Ord,Show,Enum,Bounded, Generic)
 
 instance NFData ExecutionFlag
