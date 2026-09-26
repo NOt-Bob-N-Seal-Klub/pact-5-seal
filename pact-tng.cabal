@@ -593,6 +593,7 @@ test-suite core-tests
     , wai-logger
     , fast-logger
     , property-matchers
+    , hashes >= 0.3
 
   other-modules:
     , Pact.Core.Test.CommandTests
